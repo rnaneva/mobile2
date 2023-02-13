@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+
+<head th:replace="fragments/commons::head"><title>MobiLeLeLe</title></head>
+
+
+<body>
+
+<div>
+    <nav th:replace="fragments/commons::nav"></nav>
+</div>
+
+
+<div class="container">
+    <h2 class="text-center text-white">Upload Offer</h2>
+    <form th:method="post" th:action="@{/offers/add}" th:object="${addOfferBindingModel}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="brand">Brand</label>
+                <select th:field="*{brand}" th:errorclass="is-invalid" id="brand" class="form-control">
+                    <option value="">- Select a brand -</option>
+                    <optgroup label="Brand name">
+                        <option th:each="brand: ${allBrands}"  th:text="${brand}" th:value="${brand}"
+                                ></option>
+                    </optgroup>
+                </select>
+                <p th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="errors alert alert-danger invalid-feedback">
+
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class="text-white font-weight-bold">Price</label>
+                <input th:field="*{price}" th:errorclass="is-invalid" id="price" type="number"  class="form-control"
+                       placeholder="Suggested price"/>
+                <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="errors alert alert-danger invalid-feedback">
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
+                <select th:field="*{engine}" th:errorclass="is-invalid" id="engine" class="form-control">
+                    <option value="">- Select engine type -</option>
+                    <option th:each="engine: ${T(com.example.mobile2.model.entities.Enums.EngineEnum).values()}"
+                    th:text="${engine}" th:value="${engine}" >
+
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('engine')}" th:errors="*{engine}" class="errors alert alert-danger invalid-feedback">
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
+                <select th:field="*{transmission}" th:errorclass="is-invalid" id="transmission" class="form-control">
+                    <option value="">- Select transmission type -</option>
+                    <option th:each="transmission: ${T(com.example.mobile2.model.entities.Enums.TransmissionEnum).values()}"
+                            th:text="${transmission}" th:value="${transmission}" >
+                    </option>
+                </select>
+                <p th:if="${#fields.hasErrors('transmission')}" th:errors="*{transmission}" class="errors alert alert-danger invalid-feedback">
+
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class="text-white font-weight-bold">Year</label>
+                <input th:field="*{year}" th:errorclass="is-invalid" id="year" type="number" min="1900" max="2099" step="1" class="form-control"
+                       placeholder="Manufacturing year"/>
+                <p th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="errors alert alert-danger invalid-feedback">
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="mileage" class="text-white font-weight-bold">Mileage</label>
+                <input th:field="*{mileage}" th:errorclass="is-invalid" id="mileage" type="number"
+                       class="form-control"
+                       placeholder="Mileage in kilometers"/>
+                <p th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}" class="errors alert alert-danger invalid-feedback">
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="description">Description</label>
+            <textarea th:field="*{description}" id="description" type="textarea" class="form-control" rows="3"
+                      placeholder="Description"></textarea>
+            <p>
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
+            <input th:field="*{imageUrl}" th:errorclass="is-invalid" id="imageUrl" type="url" class="form-control"
+                   placeholder="Put vehicle image URL here">
+            <p th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}" class="errors alert alert-danger invalid-feedback">
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Add Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>

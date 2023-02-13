@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head th:replace="fragments/commons::head"><title>MobiLeLeLe</title></head>
+
+
+<body>
+<div>
+    <nav th:replace="fragments/commons::nav"></nav>
+
+</div>
+
+<div class="container">
+    <h2 class="text-center text-white">Login</h2>
+    <form th:method="post"  th:action="@{/users/login}" th:object="${userLoginBindingModel}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+
+
+
+        <div class="form-group">
+            <label for="username" class="text-white font-weight-bold">Username</label>
+            <input th:field="*{username}" th:errorclass="alert-danger"  value="username" id="username" name="username" type="text" min="2" max="50"
+                   class="form-control"
+                   placeholder="Username"/>
+        </div>
+        <div class="form-group">
+            <label for="password" class="text-white font-weight-bold">Password</label>
+            <input th:field="*{password}" th:errorclass="alert-danger"  value="password" id="password" name="password" type="password" min="2"
+                   max="20" class="form-control"
+                   placeholder="Password"/>
+
+        </div>
+
+        <div th:each="error: ${#fields.errors()}" th:text="${error}" class="text-danger"></div>
+        <div th:if="${badCredentials == true}" class="text-danger">Incorrect username or password!</div>
+
+
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Login"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+</body>
+</html>
