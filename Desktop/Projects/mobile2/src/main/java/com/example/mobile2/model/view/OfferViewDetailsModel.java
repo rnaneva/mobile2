@@ -1,45 +1,35 @@
-package com.example.mobile2.model.entities;
+package com.example.mobile2.model.view;
 
 import com.example.mobile2.model.entities.Enums.EngineEnum;
 import com.example.mobile2.model.entities.Enums.TransmissionEnum;
-import jakarta.persistence.*;
-import lombok.*;
+import com.example.mobile2.model.entities.Model;
+import com.example.mobile2.model.entities.User;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@Table(name = "offers")
-@Entity
-public class Offer extends BaseEntity {
+public class OfferViewDetailsModel {
+    private long id;
 
-    private LocalDateTime created;
-
-    private String description;
-
-    @Enumerated(EnumType.STRING)
     private EngineEnum engine;
 
     private String imageUrl;
 
     private BigInteger mileage;
 
-    private LocalDateTime modified;
-
     private BigDecimal price;
 
-    @Enumerated(EnumType.STRING)
     private TransmissionEnum transmission;
 
     private Integer year;
 
-    @ManyToOne
     private Model model;
-
-    @ManyToOne
     private User seller;
+    private LocalDateTime created;
+    private LocalDateTime modified;
 }

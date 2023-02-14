@@ -17,16 +17,20 @@
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
         <div class="row">
 
+<!--            todo Models-->
+
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="brand">Brand</label>
-                <select th:field="*{brand}" th:errorclass="is-invalid" id="brand" class="form-control">
-                    <option value="">- Select a brand -</option>
-                    <optgroup label="Brand name">
-                        <option th:each="brand: ${allBrands}"  th:text="${brand}" th:value="${brand}"
-                                ></option>
+                <label class="text-center text-white font-weight-bold" for="model">Brand</label>
+                <select th:field="*{model}" th:errorclass="is-invalid" id="model" class="form-control">
+                    <option value="">- Select a model -</option>
+                    <optgroup  th:each="brand: ${brandsWithModels}" th:object="${brand}" th:label="${brand.name}">
+<!--                        <option >-->
+<!--                            <a th:each="model: ${brand.models}"   th:text="${name}" th:value="${name}"></a>-->
+<!--                        </option>-->
+
                     </optgroup>
                 </select>
-                <p th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}" class="errors alert alert-danger invalid-feedback">
+                <p th:if="${#fields.hasErrors('model')}" th:errors="*{model}" class="errors alert alert-danger invalid-feedback">
 
                 </p>
             </div>

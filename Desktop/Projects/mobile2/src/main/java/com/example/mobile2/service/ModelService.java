@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Service
@@ -17,13 +18,11 @@ public class ModelService {
         this.modelRepository = modelRepository;
     }
 
-    public List<Model> getAllModels(String brandName){
-        return modelRepository.findAllByBrandName(brandName);
-    }
 
-   public Model  findByName(String name){
+   public Model findByName(String name){
         return modelRepository.findByName(name).orElse(null);
    }
+
 
 
 }

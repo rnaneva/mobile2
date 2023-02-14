@@ -16,8 +16,10 @@ import java.math.BigInteger;
 @Setter
 public class AddOfferBindingModel {
 
+    private long id;
+    //todo Model
     @NotNull(message = "Vehicle model is required.")
-    private String brand;
+    private String model;
 
     @NotNull(message = "Price is required.")
     @Positive
